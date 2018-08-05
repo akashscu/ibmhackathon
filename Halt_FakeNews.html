@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <style>
+        button:disabled {
+            background: red;
+        }
+        #time_locked_share_button:enabled {
+            background: green;
+        }
+    </style>
+    <title>Halt, Fake News</title>
+
+</head>
+<body>
+<header>
+    <h1>Slowing Down Sharing Ex1</h1>
+</header>
+<div>
+    <main>
+
+        <section id="card">
+            Legend Says this Will Translate into a $100 Spike in Gold Overnight
+
+            <button id="share_button" onclick="try_sharing()">share</button>
+        </section>
+        <section id="hidden" style="display:hidden">
+            <h2> This is fake news according to a fact checker. </h2>
+
+            <p> Legend Says this Will Translate into a $100 Spike in Gold Overnight</p>
+
+            In amassing securities through quantitative easing programs, the central banks of Japan, US and UK balance sheets make up 40 percent of global GDP. Just as King Canute could not control the seas, setting interest rates underscores the central banks’ limitation. Now their ultra-low policies and even their existence are under attack. QE infinity has ended.
+
+            Even so, Japan had not one, but two lost decades and the unconventional policies have yet to revive their economy or inflation. Investors are increasingly skeptical over Japan’s multiple forms of easing and rather than go down, the yen gained 20 percent. Having exhausted other policy options, the BOJ promised to keep ten-year government bond yields at zero. The Japanese were among the first to introduce quantitative easing with huge increases in bond purchases by its post office.
+
+
+            <button id="time_locked_share_button" onclick="time_locked_button()"> Share</button>
+        </section>
+
+        <script>
+            var card = document.getElementById("card");
+            var hidden = document.getElementById("hidden");
+            hidden.style = "display:none";
+            // card.style = ""
+
+            var time_locked_share_button = document.getElementById("time_locked_share_button");
+            var share_button = document.getElementById("share_button");
+            // window.onload = function() {
+
+            // window.setTimeout(enable_sharing, 120);
+            // }
+            var timer = 0;
+            function try_sharing() {
+                console.log(card, hidden)
+                hidden.style = "";
+                // hidden.style.display = "block";
+                card.style = "display:none";
+                console.log(hidden.style)
+                time_locked_share_button.disabled = true;
+                timer = 120;
+                clock()
+
+            }
+
+            function clock() {
+                 myTimer = setInterval(myClock, 1000);
+                 timer = 10;
+
+                 function myClock() {
+                    timer = timer - 1;
+                   time_locked_share_button.innerHTML = "Share in " + String(timer);
+                   console.log(timer);
+                   if (timer == 0) {
+                     clearInterval(myTimer);
+                     time_locked_share_button.disabled = false
+                     time_locked_share_button.innerHTML = "Share Now";
+                     // alert("Reached zero");
+                   }
+                 }
+               }
+
+               //
+               // Golden Boy Pizza
+               // Shalimar
+               //
+               //
+
+
+            function time_locked_button() {
+                card.style = "";
+                hidden.style = "display:none";
+            }
+        </script>
+
+    </main>
+
+
+
+
+<!--
+<script src="js/libs/jquery-3.2.1.min.js" ></script>
+<script src="js/libs/knockout-3.4.2.js" ></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNx8Y4IuT2LQzMUA01RkHrArtHjN2SruQ&libraries=geometry" onerror="onGMapsError()" defer></script>
+
+<script src="js/app.js" defer></script>
+ -->
+</body>
+</html>
